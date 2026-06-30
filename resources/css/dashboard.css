@@ -1,0 +1,459 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f4f1;
+    color: #2b1b1b;
+}
+
+.app {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+}
+
+.sidebar {
+    background: #260911;
+    color: #fff;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 45px;
+}
+
+.brand-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    background: #7b1428;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+}
+
+.brand h1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.brand span {
+    font-size: 13px;
+    color: #c9aeb4;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu a {
+    color: #d8c4c8;
+    text-decoration: none;
+    padding: 14px 16px;
+    border-radius: 12px;
+    transition: 0.2s;
+}
+
+.menu a:hover,
+.menu a.active {
+    background: #7b1428;
+    color: #fff;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.sidebar-footer span {
+    display: block;
+    font-size: 13px;
+    color: #c9aeb4;
+    margin-bottom: 5px;
+}
+
+.main {
+    padding: 34px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.topbar h2 {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.topbar p {
+    color: #8a7777;
+}
+
+.topbar-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.topbar-actions input {
+    width: 260px;
+    height: 46px;
+    border: 1px solid #e2d8d8;
+    border-radius: 12px;
+    padding: 0 14px;
+    outline: none;
+}
+
+.topbar-actions input:focus {
+    border-color: #7b1428;
+}
+
+.topbar-actions button {
+    height: 46px;
+    border: none;
+    border-radius: 12px;
+    padding: 0 20px;
+    background: #7b1428;
+    color: #fff;
+    cursor: pointer;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.card,
+.panel {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 16px 40px rgba(71, 22, 31, 0.08);
+}
+
+.card {
+    padding: 24px;
+}
+
+.card span {
+    color: #8a7777;
+    font-size: 14px;
+}
+
+.card strong {
+    display: block;
+    font-size: 34px;
+    margin: 12px 0 8px;
+    color: #7b1428;
+}
+
+.card small {
+    color: #9b8a8a;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 22px;
+}
+
+.panel {
+    padding: 26px;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.panel-header h3,
+.panel h3 {
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.panel-header a {
+    color: #7b1428;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.wine-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.wine-item {
+    display: grid;
+    grid-template-columns: 52px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border: 1px solid #eee5e5;
+    border-radius: 14px;
+}
+
+.wine-cover {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: #f3e6e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.wine-item strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.wine-item span,
+.wine-item small {
+    color: #8a7777;
+    font-size: 14px;
+}
+
+.highlight {
+    background:
+        linear-gradient(rgba(123, 20, 40, 0.92), rgba(38, 9, 17, 0.95)), #7b1428;
+    color: #fff;
+}
+
+.highlight p {
+    color: #eadfdf;
+    line-height: 1.6;
+    margin: 16px 0 28px;
+}
+
+.progress-box {
+    margin-bottom: 22px;
+}
+
+.progress-box > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.progress-box span {
+    color: #eadfdf;
+}
+
+.progress {
+    height: 9px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress div {
+    height: 100%;
+    background: #fff;
+    border-radius: 20px;
+}
+
+@media (max-width: 1000px) {
+    .app {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .topbar,
+    .topbar-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .topbar-actions input {
+        width: 100%;
+    }
+
+    .cards,
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.catalog-toolbar {
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 28px;
+    box-shadow: 0 16px 40px rgba(71, 22, 31, 0.08);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.filters {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+}
+
+.filters input,
+.filters select {
+    height: 46px;
+    border: 1px solid #e2d8d8;
+    border-radius: 12px;
+    padding: 0 14px;
+    outline: none;
+    background: #fff;
+}
+
+.filters input {
+    width: 360px;
+}
+
+.filters input:focus,
+.filters select:focus {
+    border-color: #7b1428;
+}
+
+.catalog-toolbar button {
+    height: 46px;
+    border: none;
+    border-radius: 12px;
+    padding: 0 22px;
+    background: #7b1428;
+    color: #fff;
+    cursor: pointer;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.wine-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(71, 22, 31, 0.08);
+}
+
+.wine-image {
+    height: 210px;
+    background: linear-gradient(rgba(123, 20, 40, 0.88), rgba(38, 9, 17, 0.96));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 66px;
+    position: relative;
+}
+
+.wine-image.light {
+    background: linear-gradient(
+        rgba(190, 151, 88, 0.85),
+        rgba(123, 74, 28, 0.95)
+    );
+}
+
+.tag {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+}
+
+.wine-info {
+    padding: 22px;
+}
+
+.wine-info h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.wine-info p {
+    color: #8a7777;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.wine-meta {
+    display: flex;
+    justify-content: space-between;
+    padding: 11px 0;
+    border-top: 1px solid #eee5e5;
+    font-size: 14px;
+}
+
+.wine-meta span {
+    color: #8a7777;
+}
+
+.wine-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+}
+
+.wine-actions a {
+    color: #7b1428;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.wine-actions button {
+    border: none;
+    border-radius: 10px;
+    background: #f3e6e8;
+    color: #7b1428;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .catalog-toolbar,
+    .filters {
+        flex-direction: column;
+    }
+
+    .filters input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    .catalog-grid {
+        grid-template-columns: 1fr;
+    }
+}
