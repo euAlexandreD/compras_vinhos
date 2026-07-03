@@ -21,11 +21,10 @@
         </div>
 
         <nav class="menu">
-            <a href="#" class="active">Dashboard</a>
-            <a href="#">Vinhos</a>
-            <a href="#">Categorias</a>
-            <a href="#">Safras</a>
-            <a href="#">Produtores</a>
+            <a href="#" class="active">Catalogo</a>
+            <a href="#">Pedidos</a>
+            <a href="#">Meu perfil</a>
+            <a href="#">Ultimos pedidos</a>
             <a href="#">Relatórios</a>
         </nav>
 

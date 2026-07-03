@@ -9,47 +9,33 @@
 <section class="catalog-toolbar">
     <div class="filters">
         <input type="text" placeholder="Buscar por nome, uva ou safra...">
-
-        <select>
-            <option>Todos os tipos</option>
-            <option>Tinto</option>
-            <option>Branco</option>
-            <option>Rosé</option>
-            <option>Espumante</option>
-        </select>
-
-        <select>
-            <option>Todas as safras</option>
-            <option>2024</option>
-            <option>2023</option>
-            <option>2022</option>
-            <option>2021</option>
-        </select>
+        <button type="submit">&#128269 Pesquisar</button>
     </div>
 
-    <button>+ Novo vinho</button>
+    <button onclick="window.location='{{ route('newWine') }}'">+ Novo vinho</button>
 </section>
 
 <section class="catalog-grid">
 
-    <article class="wine-card">
+@foreach ($products as $product)
+ <article class="wine-card">
         <div class="wine-image">
             🍷
-            <span class="tag">Tinto</span>
+            <span class="tag">{{ $product['type'] }}</span>
         </div>
 
         <div class="wine-info">
-            <h3>Cabernet Sauvignon Reserva</h3>
-            <p>Serra Gaúcha • Safra 2020</p>
+            <h3>{{ $product['name_wine'] }}</h3>
+            <p>{{ $product['country'] }} • Safra {{ $product['harvest'] }}</p>
 
             <div class="wine-meta">
                 <span>Uva</span>
-                <strong>Cabernet</strong>
+                <strong>{{ $product['grape'] }}</strong>
             </div>
 
             <div class="wine-meta">
                 <span>Estoque</span>
-                <strong>12 un.</strong>
+                <strong>{{ $product['quantity'] }} un.</strong>
             </div>
 
             <div class="wine-actions">
@@ -58,6 +44,7 @@
             </div>
         </div>
     </article>
+@endforeach
 
     <article class="wine-card">
         <div class="wine-image">
