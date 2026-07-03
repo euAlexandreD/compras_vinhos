@@ -8,8 +8,13 @@
 
 <section class="catalog-toolbar">
     <div class="filters">
-        <input type="text" placeholder="Buscar por nome, uva ou safra...">
-        <button type="submit">&#128269 Pesquisar</button>
+        <form method="GET" action="{{ route('index') }}">
+            <input  type="text"
+                    name="keyword"
+                    value="{{ request('keyword') }}"
+                    placeholder="Buscar por nome, uva ou safra...">
+            <button type="submit">&#128269 Pesquisar</button>
+        </form>
     </div>
 
     <button onclick="window.location='{{ route('newWine') }}'">+ Novo vinho</button>
@@ -21,21 +26,21 @@
  <article class="wine-card">
         <div class="wine-image">
             🍷
-            <span class="tag">{{ $product['type'] }}</span>
+            <span class="tag">{{ $product->type }}</span>
         </div>
 
         <div class="wine-info">
-            <h3>{{ $product['name_wine'] }}</h3>
-            <p>{{ $product['country'] }} • Safra {{ $product['harvest'] }}</p>
+            <h3>{{ $product->name_wine }}</h3>
+            <p>{{ $product->country }} • Safra {{ $product->harvest }}</p>
 
             <div class="wine-meta">
                 <span>Uva</span>
-                <strong>{{ $product['grape'] }}</strong>
+                <strong>{{ $product->grape }}</strong>
             </div>
 
             <div class="wine-meta">
                 <span>Estoque</span>
-                <strong>{{ $product['quantity'] }} un.</strong>
+                <strong>{{ $product->quantity }} un.</strong>
             </div>
 
             <div class="wine-actions">
@@ -46,60 +51,9 @@
     </article>
 @endforeach
 
-    <article class="wine-card">
-        <div class="wine-image">
-            🍇
-            <span class="tag">Tinto</span>
-        </div>
-
-        <div class="wine-info">
-            <h3>Merlot Premium</h3>
-            <p>Campanha Gaúcha • Safra 2019</p>
-
-            <div class="wine-meta">
-                <span>Uva</span>
-                <strong>Merlot</strong>
-            </div>
-
-            <div class="wine-meta">
-                <span>Estoque</span>
-                <strong>8 un.</strong>
-            </div>
-
-            <div class="wine-actions">
-                <a href="#">Ver detalhes</a>
-                <button>Editar</button>
-            </div>
-        </div>
-    </article>
-
-    <article class="wine-card">
-        <div class="wine-image light">
-            🥂
-            <span class="tag">Branco</span>
-        </div>
-
-        <div class="wine-info">
-            <h3>Chardonnay Seleção</h3>
-            <p>Vale dos Vinhedos • Safra 2021</p>
-
-            <div class="wine-meta">
-                <span>Uva</span>
-                <strong>Chardonnay</strong>
-            </div>
-
-            <div class="wine-meta">
-                <span>Estoque</span>
-                <strong>15 un.</strong>
-            </div>
-
-            <div class="wine-actions">
-                <a href="#">Ver detalhes</a>
-                <button>Editar</button>
-            </div>
-        </div>
-    </article>
-
 </section>
+<div class="pagination">
+    {{ $products->links() }}
+</div>
 
 @endsection
