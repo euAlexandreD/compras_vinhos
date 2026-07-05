@@ -22,10 +22,11 @@
 
         <nav class="menu">
             <a href="{{ route('index') }}" class="active">Catalogo</a>
-            <a href="">Pedidos</a>
+            <a href="{{ route('orders') }}">Pedidos</a>
             <a href="">Meu perfil</a>
             <a href="#">Ultimos pedidos</a>
             <a href="#">Relatórios</a>
+            <a href="{{ route('cart') }}">Meu carrinho</a>
         </nav>
 
         <div class="sidebar-footer">

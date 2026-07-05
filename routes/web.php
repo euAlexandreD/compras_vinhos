@@ -16,3 +16,7 @@ Route::get('/createUser', [CreateUserController::class, 'newUser'])->name('newUs
 Route::post('/newUserSubmit', [CreateUserController::class, 'newUserSubmit'])->name('newUserSubmit');
 Route::get('/editUser/{id}', [CreateUserController::class, 'editUser'])->name('editUser');
 Route::post('/editUserSubmit', [CreateUserController::class, 'editUserSubmit'])->name('editUserSubmit');
+Route::get('/cart', [MainController::class, 'cart'])->name('cart');
+Route::get('/addToCart', [MainController::class, 'addToCart'])->name('addToCart');
+Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
+Route::get('/orders', [MainController::class, 'orders'])->name('orders');

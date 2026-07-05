@@ -1,0 +1,145 @@
+.orders-toolbar {
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 28px;
+    box-shadow: 0 16px 40px rgba(71, 22, 31, 0.08);
+}
+
+.orders-filter {
+    display: flex;
+    gap: 12px;
+}
+
+.orders-filter input,
+.orders-filter select {
+    height: 46px;
+    border: 1px solid #e2d8d8;
+    border-radius: 12px;
+    padding: 0 14px;
+    outline: none;
+    background: #fff;
+}
+
+.orders-filter input {
+    width: 360px;
+}
+
+.orders-filter button {
+    height: 46px;
+    border: none;
+    border-radius: 12px;
+    padding: 0 22px;
+    background: #7b1428;
+    color: #fff;
+    cursor: pointer;
+}
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.order-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 16px 40px rgba(71, 22, 31, 0.08);
+}
+
+.order-header,
+.order-info,
+.order-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: center;
+}
+
+.order-header span,
+.order-info span {
+    color: #8a7777;
+    font-size: 14px;
+}
+
+.order-header h3 {
+    margin-top: 6px;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.status-badge {
+    background: #f3e6e8;
+    color: #7b1428;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+}
+
+.order-info {
+    margin: 24px 0;
+    padding: 18px 0;
+    border-top: 1px solid #eee5e5;
+    border-bottom: 1px solid #eee5e5;
+}
+
+.order-info div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.order-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    background: #faf6f6;
+    padding: 12px 14px;
+    border-radius: 12px;
+}
+
+.order-actions {
+    margin-top: 22px;
+}
+
+.order-actions a {
+    color: #7b1428;
+    text-decoration: none;
+}
+
+.order-actions button {
+    border: none;
+    border-radius: 10px;
+    background: #7b1428;
+    color: #fff;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.empty-orders {
+    background: #fff;
+    border-radius: 20px;
+    padding: 60px;
+    text-align: center;
+    box-shadow: 0 16px 40px rgba(71, 22, 31, 0.08);
+}
+
+@media (max-width: 800px) {
+    .orders-filter,
+    .order-header,
+    .order-info,
+    .order-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .orders-filter input {
+        width: 100%;
+    }
+}

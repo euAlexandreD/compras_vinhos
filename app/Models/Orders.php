@@ -3,20 +3,34 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Orders extends Model
 {
 
-    use SoftDeletes;
+    protected $table = 'orders';
 
-    public function users()
+    protected $fillable = [
+        'user_id',
+        'status_id',
+        'total_price',
+    ];
+
+
+
+    public function items()
     {
-        $this->hasOne(User::class);
+        return $this->hasMany(OrdemItem::class, 'order_id');
     }
 
-    public function statuses()
+    public function user()
     {
-        $this->hasOne(Statuses::class);
+        return $this->belongsTo(User::class);
+    }
+
+
+    public function status()
+    {
+        return $this->belongsTo(Statuses::class, 'status_id');
     }
 }

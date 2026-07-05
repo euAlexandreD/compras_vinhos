@@ -457,3 +457,36 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+.quantity-form {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.quantity-form input {
+    width: 80px;
+    height: 40px;
+    border: 1px solid #e2d8d8;
+    border-radius: 10px;
+    padding: 0 10px;
+    outline: none;
+}
+
+.quantity-form input:focus {
+    border-color: #7b1428;
+}
+
+.quantity-form button {
+    flex: 1;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background: #7b1428;
+    color: #fff;
+    cursor: pointer;
+}
+
+.quantity-form button:hover {
+    background: #5f0f1f;
+}

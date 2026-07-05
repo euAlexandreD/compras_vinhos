@@ -45,7 +45,24 @@
 
             <div class="wine-actions">
                 <a href="#">Ver detalhes</a>
-                <button>Editar</button>
+            <button>Editar</button>
+                 <form action="{{ route('addToCart') }}" method="get" class="quantity-form">
+                        @csrf
+
+                             <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                            <input
+                                type="number"
+                                name="quantity"
+                                min="1"
+                                value="1"
+                            >
+
+                    <button type="submit">
+                        Adicionar ao carrinho
+                    </button>
+                </form>
+
             </div>
         </div>
     </article>
