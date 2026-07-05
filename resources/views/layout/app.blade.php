@@ -21,9 +21,9 @@
         </div>
 
         <nav class="menu">
-            <a href="#" class="active">Catalogo</a>
-            <a href="#">Pedidos</a>
-            <a href="#">Meu perfil</a>
+            <a href="{{ route('index') }}" class="active">Catalogo</a>
+            <a href="">Pedidos</a>
+            <a href="">Meu perfil</a>
             <a href="#">Ultimos pedidos</a>
             <a href="#">Relatórios</a>
         </nav>
@@ -41,10 +41,6 @@
                 <p>@yield('page-subtitle', 'Visão geral do seu catálogo de vinhos')</p>
             </div>
 
-            <div class="topbar-actions">
-                <input type="text" placeholder="Buscar vinho...">
-                <button>+ Novo vinho</button>
-            </div>
         </header>
 
         @yield('content')
