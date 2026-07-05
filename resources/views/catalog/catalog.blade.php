@@ -9,66 +9,86 @@
 <section class="catalog-toolbar">
     <div class="filters">
         <form method="GET" action="{{ route('index') }}">
-            <input  type="text"
-                    name="keyword"
-                    value="{{ request('keyword') }}"
-                    placeholder="Buscar por nome, uva ou safra...">
-            <button type="submit">&#128269 Pesquisar</button>
+            <input
+                type="text"
+                name="keyword"
+                value="{{ request('keyword') }}"
+                placeholder="Buscar por nome, uva ou safra..."
+            >
+
+            <button type="submit">🔍 Pesquisar</button>
         </form>
     </div>
 
-    <button onclick="window.location='{{ route('newWine') }}'">+ Novo vinho</button>
+    <button onclick="window.location='{{ route('newWine') }}'">
+        + Novo vinho
+    </button>
 </section>
 
-<section class="catalog-grid">
 
-@foreach ($products as $product)
- <article class="wine-card">
-        <div class="wine-image">
-            🍷
-            <span class="tag">{{ $product->type }}</span>
-        </div>
+<form id="cartForm" action="{{ route('addToCart') }}" method="POST">
+    @csrf
 
-        <div class="wine-info">
-            <h3>{{ $product->name_wine }}</h3>
-            <p>{{ $product->country }} • Safra {{ $product->harvest }}</p>
+    <section class="catalog-grid">
 
-            <div class="wine-meta">
-                <span>Uva</span>
-                <strong>{{ $product->grape }}</strong>
-            </div>
+        @forelse ($products as $product)
 
-            <div class="wine-meta">
-                <span>Estoque</span>
-                <strong>{{ $product->quantity }} un.</strong>
-            </div>
+            <article class="wine-card">
+                <div class="wine-image">
+                    🍷
+                    <span class="tag">{{ $product->type }}</span>
+                </div>
 
-            <div class="wine-actions">
-                <a href="#">Ver detalhes</a>
-            <button>Editar</button>
-                 <form action="{{ route('addToCart') }}" method="get" class="quantity-form">
-                        @csrf
+                <div class="wine-info">
+                    <h3>{{ $product->name_wine }}</h3>
+                    <p>{{ $product->country }} • Safra {{ $product->harvest }}</p>
 
-                             <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <div class="wine-meta">
+                        <span>Uva</span>
+                        <strong>{{ $product->grape }}</strong>
+                    </div>
 
-                            <input
-                                type="number"
-                                name="quantity"
-                                min="1"
-                                value="1"
-                            >
+                    <div class="wine-meta">
+                        <span>Estoque</span>
+                        <strong>{{ $product->quantity }} un.</strong>
+                    </div>
 
-                    <button type="submit">
-                        Adicionar ao carrinho
-                    </button>
-                </form>
+                    <div class="wine-actions">
+                        <a href="#">Ver detalhes</a>
+                        <button type="button">Editar</button>
+                    </div>
 
-            </div>
-        </div>
-    </article>
-@endforeach
+                    <label class="select-wine">
+                        <input
+                            type="checkbox"
+                            name="products[]"
+                            value="{{ $product->id }}"
+                        >
+                        Selecionar
+                    </label>
+                </div>
+            </article>
 
-</section>
+        @empty
+
+            <p>Nenhum vinho encontrado.</p>
+
+        @endforelse
+
+    </section>
+
+    {{-- <div class="catalog-cart-action">
+        <button type="submit">
+            Adicionar selecionados ao carrinho
+        </button>
+    </div> --}}
+</form>
+<div class="catalog-cart-action">
+    <button type="button" onclick="document.getElementById('cartForm').submit()">
+        Adicionar selecionados ao carrinho
+    </button>
+</div>
+
 <div class="pagination">
     {{ $products->links() }}
 </div>

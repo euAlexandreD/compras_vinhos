@@ -45,12 +45,24 @@ class MainController extends Controller
         // if($request->quantity > $product->quantity)
 
         $cart = session()->get('cart', []);
-        $cart[$product->id] = [
-            'id' => $product->id,
-            'name' => $product->name_wine,
-            'price' => $product->price,
-            'quantity' => ($cart[$product->id]['quantity'] ?? 0) + $request->quantity,
-        ];
+
+        foreach ($request->products as $productId) {
+            if ($product->quantity <= 0) {
+                continue;
+            }
+
+            if (isset($cart[$product->id])) {
+                $cart[$product->id]['quantity'] += 1;
+            } else {
+                $cart[$product->id] = [
+                    'id' => $product->id,
+                    'name' => $product->name_wine,
+                    'price' => $product->price,
+                    'quantity' => 1,
+                ];
+            }
+        }
+
         session()->put('cart', $cart);
         return redirect()->route('cart');
         // return redirect()->route()

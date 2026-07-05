@@ -1,6 +1,5 @@
 <?php
 
-use App\Actions\Fortify\CreateNewUser;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CreateUserController;
 use App\Http\Controllers\CreateWine;
@@ -17,6 +16,6 @@ Route::post('/newUserSubmit', [CreateUserController::class, 'newUserSubmit'])->n
 Route::get('/editUser/{id}', [CreateUserController::class, 'editUser'])->name('editUser');
 Route::post('/editUserSubmit', [CreateUserController::class, 'editUserSubmit'])->name('editUserSubmit');
 Route::get('/cart', [MainController::class, 'cart'])->name('cart');
-Route::get('/addToCart', [MainController::class, 'addToCart'])->name('addToCart');
+Route::post('/addToCart', [MainController::class, 'addToCart'])->name('addToCart');
 Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
 Route::get('/orders', [MainController::class, 'orders'])->name('orders');
