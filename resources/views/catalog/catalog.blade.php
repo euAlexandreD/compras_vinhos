@@ -30,9 +30,7 @@
     @csrf
 
     <section class="catalog-grid">
-
-        @forelse ($products as $product)
-
+        @foreach ($products as $product)
             <article class="wine-card">
                 <div class="wine-image">
                     🍷
@@ -53,44 +51,58 @@
                         <strong>{{ $product->quantity }} un.</strong>
                     </div>
 
-                    <div class="wine-actions">
-                        <a href="#">Ver detalhes</a>
-                        <button type="button">Editar</button>
+                     <div class="wine-meta">
+                        <span>Valor</span>
+                        <strong>R$ {{ number_format($product->price, 2, ',', '.') }} un.</strong>
                     </div>
 
-                    <label class="select-wine">
-                        <input
-                            type="checkbox"
-                            name="products[]"
-                            value="{{ $product->id }}"
-                        >
-                        Selecionar
-                    </label>
-                </div>
+                   <div class="card-actions-row">
+                        <div class="quantity-control">
+                            <button type="button" onclick="decreaseQty({{ $product->id }})">−</button>
+
+                            <input
+                                type="number"
+                                id="qty-{{ $product->id }}"
+                                name="products[{{ $product->id }}]"
+                                value="0"
+                                readonly
+                            >
+
+                            <button type="button" onclick="increaseQty({{ $product->id }})">+</button>
+                        </div>
+
+                        <a href="{{ route('editProduct', $product->id) }}" class="btn-edit">
+                            Editar
+                        </a>
+                    </div>
             </article>
-
-        @empty
-
-            <p>Nenhum vinho encontrado.</p>
-
-        @endforelse
-
+        @endforeach
     </section>
-
-    {{-- <div class="catalog-cart-action">
-        <button type="submit">
-            Adicionar selecionados ao carrinho
-        </button>
-    </div> --}}
 </form>
-<div class="catalog-cart-action">
-    <button type="button" onclick="document.getElementById('cartForm').submit()">
-        Adicionar selecionados ao carrinho
-    </button>
-</div>
+
+<button type="button" class="floating-cart-btn" onclick="document.getElementById('cartForm').submit()">
+    Adicionar ao carrinho
+</button>
+
 
 <div class="pagination">
     {{ $products->links() }}
 </div>
+<script>
+    function increaseQty(id) {
+        const input = document.getElementById('qty-' + id);
+        let value = parseInt(input.value || 0);
 
+        input.value = value + 1;
+    }
+
+    function decreaseQty(id) {
+        const input = document.getElementById('qty-' + id);
+        let value = parseInt(input.value || 0);
+
+        if (value > 0) {
+            input.value = value - 1;
+        }
+    }
+</script>
 @endsection

@@ -89,6 +89,35 @@
     @endforelse
 
 </section>
+     <div class="report-filter">
+    <form method="GET" action="{{ route('orders.pdf') }}">
+
+        <div class="field">
+            <label>Data inicial</label>
+            <input
+                type="date"
+                name="start_date"
+                value="{{ request('start_date') }}">
+        </div>
+
+        <div class="field">
+            <label>Data final</label>
+            <input
+                type="date"
+                name="end_date"
+                value="{{ request('end_date') }}">
+        </div>
+
+        <button type="submit">
+            📄 Gerar PDF
+        </button>
+
+        <a href="{{ route('orders') }}" class="clear">
+            Limpar filtros
+        </a>
+
+    </form>
+</div>
 
 <div class="pagination">
     {{ $orders->links() }}

@@ -6,6 +6,8 @@ use App\Models\OrdemItem;
 use App\Models\Orders;
 use App\Models\Products;
 use App\Models\Statuses;
+use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,35 +40,40 @@ class MainController extends Controller
         return view('cart.index', compact('cart'));
     }
 
+
     public function addToCart(Request $request)
     {
-        $product = Products::findOrFail($request->product_id);
+        $products = collect($request->products)
+            ->filter(fn($quantity) => (int) $quantity > 0);
 
-        // if($request->quantity > $product->quantity)
+        if ($products->isEmpty()) {
+            return back()->with('error', 'Selecione pelo menos um produto.');
+        }
 
         $cart = session()->get('cart', []);
 
-        foreach ($request->products as $productId) {
-            if ($product->quantity <= 0) {
-                continue;
-            }
+        foreach ($products as $productId => $quantity) {
+            $product = Products::findOrFail($productId);
+            $quantity = (int) $quantity;
+
 
             if (isset($cart[$product->id])) {
-                $cart[$product->id]['quantity'] += 1;
+                $cart[$product->id]['quantity'] += $quantity;
             } else {
                 $cart[$product->id] = [
                     'id' => $product->id,
                     'name' => $product->name_wine,
                     'price' => $product->price,
-                    'quantity' => 1,
+                    'quantity' => $quantity,
                 ];
             }
         }
 
         session()->put('cart', $cart);
+
         return redirect()->route('cart');
-        // return redirect()->route()
     }
+
 
     public function checkout()
     {
@@ -121,5 +128,63 @@ class MainController extends Controller
         $statuses = Statuses::all();
 
         return view('orders.index', compact('orders', 'statuses'));
+    }
+
+    public function removeFromCart(Request $request)
+    {
+        $cart = session()->get('cart', []);
+
+        unset($cart[$request->product_id]);
+
+        session()->put('cart', $cart);
+
+        return redirect()->route('cart');
+    }
+
+    public function clearCart()
+    {
+        session()->forget('cart');
+
+        return redirect()->route('cart')
+            ->with('success', 'Carrinho limpo com sucesso.');
+    }
+
+    public function editProduct($id)
+    {
+        $product = Products::findOrFail($id);
+        return view('catalog.edit', compact('product'));
+    }
+
+    public function ordersPdf(Request $request)
+    {
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        $users = User::with(['orders' => function ($query) use ($startDate, $endDate) {
+            if ($startDate) {
+                $query->whereDate('created_at', '>=', $startDate);
+            }
+
+            if ($endDate) {
+                $query->whereDate('created_at', '<=', $endDate);
+            }
+
+            $query->with(['items.product']);
+        }])
+            ->whereHas('orders', function ($query) use ($startDate, $endDate) {
+                if ($startDate) {
+                    $query->whereDate('created_at', '>=', $startDate);
+                }
+
+                if ($endDate) {
+                    $query->whereDate('created_at', '<=', $endDate);
+                }
+            })
+            ->orderBy('username')
+            ->get();
+
+        $pdf = Pdf::loadView('catalog.pdf', compact('users', 'startDate', 'endDate'));
+
+        return $pdf->download('relatorio_pedidos_por_cliente.pdf');
     }
 }

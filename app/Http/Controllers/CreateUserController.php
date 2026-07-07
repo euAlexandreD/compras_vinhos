@@ -34,14 +34,21 @@ class CreateUserController extends Controller
     {
         $id = $request->user_id;
         $user = User::find($id);
+        $user->username = $request->username;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->password = $request->password;
 
-        $saved = $user->save();
+        $user->save();
 
 
         return redirect()->route('index');
+    }
+
+    public function viewPerfil()
+    {
+        $user = User::findOrFail(session('user.id'));
+        return view('users.perfil', compact('user'));
     }
 }

@@ -518,3 +518,204 @@ body {
 .catalog-cart-action button:hover {
     background: #5f0f1f;
 }
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.quantity-control button {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 10px;
+    background: #7b1428;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.quantity-control input {
+    width: 58px;
+    height: 38px;
+    border: 1px solid #e2d8d8;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.floating-cart-btn {
+    position: fixed;
+    right: 34px;
+    bottom: 34px;
+    height: 54px;
+    padding: 0 28px;
+    border: none;
+    border-radius: 999px;
+    background: #7b1428;
+    color: #fff;
+    box-shadow: 0 16px 40px rgba(71, 22, 31, 0.25);
+    cursor: pointer;
+    z-index: 50;
+}
+
+.floating-cart-btn:hover {
+    background: #5f0f1f;
+}
+
+.btn-edit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    padding: 0 16px;
+    background: #7b1428;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.btn-edit:hover {
+    background: #5f0f1f;
+}
+.card-actions-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quantity-control button {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 12px;
+    background: #8b0f2d;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.quantity-control input {
+    width: 64px;
+    height: 42px;
+    border: 1px solid #eadede;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.btn-edit {
+    height: 42px;
+    padding: 0 20px;
+    border-radius: 12px;
+    background: #8b0f2d;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* ===========================
+   FILTRO DE RELATÓRIOS
+=========================== */
+
+.report-filter {
+    width: 100%;
+    margin: 20px 0 30px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.report-filter form {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.report-filter .field {
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+}
+
+.report-filter label {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.report-filter input[type="date"] {
+    height: 42px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    padding: 0 12px;
+    font-size: 0.95rem;
+    transition: 0.2s;
+}
+
+.report-filter input[type="date"]:focus {
+    outline: none;
+    border-color: #8a1d36;
+    box-shadow: 0 0 0 3px rgba(138, 29, 54, 0.15);
+}
+
+.report-filter button {
+    height: 42px;
+    padding: 0 24px;
+    border: none;
+    border-radius: 8px;
+    background: #8a1d36;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.report-filter button:hover {
+    background: #6d162a;
+    transform: translateY(-2px);
+}
+
+.report-filter .clear {
+    background: #6c757d;
+}
+
+.report-filter .clear:hover {
+    background: #555;
+}
+
+.report-filter .clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    padding: 0 24px;
+    border-radius: 8px;
+    background: #6c757d;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.report-filter .clear:hover {
+    background: #555;
+    transform: translateY(-2px);
+}
