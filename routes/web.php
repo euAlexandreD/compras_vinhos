@@ -23,3 +23,8 @@ Route::post('/cart/remove', [MainController::class, 'removeFromCart'])->name('ca
 Route::post('/cart/clear', [MainController::class, 'clearCart'])->name('cart.clear');
 Route::get('/editProduct/{id}', [MainController::class, 'editProduct'])->name('editProduct');
 Route::get('/orders/pdf', [MainController::class, 'ordersPdf'])->name('orders.pdf');
+Route::get('/logout', [CreateUserController::class, 'logout'])->name('logout');
+Route::get('/my-orders', [MainController::class, 'myOrders'])->name('myOrders');
+Route::post('/repeat-order/{id}', [MainController::class, 'repeatOrder'])->name('repeatOrder');
+Route::post('/updateRoles/{user}', [CreateUserController::class, 'updateRoles'])->name('updateRoles');
+Route::get('/profiles', [CreateUserController::class, 'listUsers'])->name('profiles');

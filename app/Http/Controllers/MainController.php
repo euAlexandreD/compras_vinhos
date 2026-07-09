@@ -187,4 +187,48 @@ class MainController extends Controller
 
         return $pdf->download('relatorio_pedidos_por_cliente.pdf');
     }
+
+    public function myOrders()
+    {
+        $orders = Orders::with(['items.product', 'status'])
+            ->where('user_id', session('user.id'))
+            ->latest()
+            ->paginate(10);
+
+        return view('orders.my_orders', compact('orders'));
+    }
+
+    public function repeatOrder($id)
+    {
+        $order = Orders::with('items.product')
+            ->where('user_id', session('user.id'))
+            ->findOrFail($id);
+
+        $cart = session()->get('cart', []);
+
+        foreach ($order->items as $item) {
+            $product = $item->product;
+
+            if (!$product) {
+                continue;
+            }
+
+            if (isset($cart[$product->id])) {
+                $cart[$product->id]['quantity'] += $item->quantity;
+            } else {
+                $cart[$product->id] = [
+                    'id' => $product->id,
+                    'name' => $product->name_wine,
+                    'price' => $product->price,
+                    'quantity' => $item->quantity,
+                ];
+            }
+        }
+
+        session()->put('cart', $cart);
+
+        return redirect()
+            ->route('cart')
+            ->with('success', 'Pedido adicionado ao carrinho novamente.');
+    }
 }

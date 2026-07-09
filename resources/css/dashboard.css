@@ -719,3 +719,61 @@ body {
     background: #555;
     transform: translateY(-2px);
 }
+#logout {
+    height: 46px;
+    border: none;
+    border-radius: 12px;
+    padding: 0 20px;
+    background: #7b1428;
+    color: #fff;
+    cursor: pointer;
+}
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #fff;
+
+    padding: 18px 30px;
+
+    margin-bottom: 25px;
+
+    border-radius: 16px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.topbar-logo h2 {
+    margin: 0;
+    color: #7b1428;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-name {
+    color: #555;
+    font-weight: 500;
+}
+
+.btn-topbar {
+    background: #7b1428;
+    color: #fff;
+    text-decoration: none;
+
+    padding: 10px 22px;
+
+    border-radius: 10px;
+
+    transition: 0.3s;
+}
+
+.btn-topbar:hover {
+    background: #5e0f20;
+}

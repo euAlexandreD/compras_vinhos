@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -17,22 +18,22 @@ class AuthController extends Controller
 
         $request->validate(
             [
-                'email' => 'required|email',
+                'username' => 'required',
                 'password' => 'required|min:6|max:16',
             ],
             [
-                'email.required' => 'E-mail é obrigatório',
-                'email.email' => 'E-mail precisa ser um email válido',
-                'password.required' => 'Password é obrigatório',
-                'password.min' => 'Password deve ter pelo menos 6 caracteres',
-                'password.max' => 'Password não deve exceder 16 caracteres',
+                'username.required' => 'Seu nome é obrigatório',
+                'username.username' => 'Seu nome precisa ser um username válido',
+                'password.required' => 'password é obrigatório',
+                'password.min' => 'password deve ter pelo menos 6 caracteres',
+                'password.max' => 'password não deve exceder 16 caracteres',
             ]
         );
 
-        $email = $request->input('email');
+        $username = $request->input('username');
         $password = $request->input('password');
 
-        $user = User::where('email', $email)
+        $user = User::where('username', $username)
             ->where('deleted_at', NULL)
             ->first();
 
@@ -50,7 +51,7 @@ class AuthController extends Controller
                 ->with('loginError', 'Credenciais invalidas');
         }
 
-        $user->save();
+        Auth::login($user);
         session([
             'user' => [
                 'id' => $user->id,

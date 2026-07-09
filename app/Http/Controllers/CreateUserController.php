@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -24,12 +25,6 @@ class CreateUserController extends Controller
         return redirect()->route('index');
     }
 
-    public function editUser($id)
-    {
-        $user = User::find($id);
-        return view('users.edit_user', compact('user'));
-    }
-
     public function editUserSubmit(Request $request)
     {
         $id = $request->user_id;
@@ -39,16 +34,40 @@ class CreateUserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->password = $request->password;
-
         $user->save();
-
-
         return redirect()->route('index');
+    }
+
+    public function updateRoles(User $user, Request $request)
+    {
+        $input = $request->validate([
+            'roles' => 'required|array'
+        ]);
+        $user->roles()->sync($input['roles']);
+        return redirect()->route('perfil');
     }
 
     public function viewPerfil()
     {
-        $user = User::findOrFail(session('user.id'));
-        return view('users.perfil', compact('user'));
+        if (!session('user_id')) {
+            $user = User::findOrFail(session('user.id'));
+            $roles = Role::all();
+            return view('users.perfil', compact('user', 'roles'));
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function logout()
+    {
+        session()->forget('user');
+        return redirect()->to('/login');
+    }
+
+    public function listUsers()
+    {
+        $users = User::all();
+        $roles = Role::all();
+        return view('users.list_users', compact('users', 'roles'));
     }
 }

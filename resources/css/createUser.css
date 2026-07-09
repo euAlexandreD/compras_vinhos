@@ -101,6 +101,74 @@
     margin-bottom: 24px;
 }
 
+/* ---------- Cargos (roles) ---------- */
+
+.roles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.role-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1px solid #e2d8d8;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #5d4949;
+    transition:
+        border-color 0.15s,
+        background 0.15s;
+}
+
+.role-checkbox:hover {
+    border-color: #d8c3c3;
+    background: #fdf9f9;
+}
+
+.role-checkbox input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 1px solid #e2d8d8;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    transition:
+        background 0.15s,
+        border-color 0.15s;
+}
+
+.role-checkbox input[type="checkbox"]:checked {
+    background: #7b1428;
+    border-color: #7b1428;
+}
+
+.role-checkbox input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.role-checkbox input[type="checkbox"]:focus {
+    box-shadow: 0 0 0 4px rgba(123, 20, 40, 0.08);
+}
+
+/* ---------- Responsivo ---------- */
+
 @media (max-width: 800px) {
     .wine-form {
         max-width: 100%;

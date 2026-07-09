@@ -30,13 +30,13 @@
                 @csrf
 
                 <div class="form-group">
-                    <label for="email">E-mail</label>
+                    <label for="username">Seu Nome</label>
                     <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value="{{ old('email') }}"
-                        placeholder="seu@email.com"
+                        type="text"
+                        id="text"
+                        name="username"
+                        value="{{ old('username') }}"
+                        placeholder="seu nome...""
                         required
                         autofocus
                     >

@@ -1,0 +1,238 @@
+/* ---------- Header do card (título + ação) ---------- */
+
+.card-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.card-title-row .card-title {
+    margin-bottom: 0;
+}
+
+.card-title-row .primary {
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* ---------- Barra de busca ---------- */
+
+.search-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.search-bar input {
+    flex: 1;
+    height: 46px;
+    border: 1px solid #e2d8d8;
+    border-radius: 12px;
+    padding: 0 16px;
+    font-size: 15px;
+    outline: none;
+    background: #fff;
+}
+
+.search-bar input:focus {
+    border-color: #7b1428;
+    box-shadow: 0 0 0 4px rgba(123, 20, 40, 0.08);
+}
+
+.search-bar button {
+    height: 46px;
+    padding: 0 22px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/* ---------- Tabela ---------- */
+
+.table-wrapper {
+    overflow-x: auto;
+    border: 1px solid #f0e8e8;
+    border-radius: 16px;
+}
+
+.profiles-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.profiles-table thead th {
+    text-align: left;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #a68686;
+    font-weight: 600;
+    padding: 14px 20px;
+    background: #fbf7f7;
+    border-bottom: 1px solid #f0e8e8;
+}
+
+.profiles-table tbody td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f4eeee;
+    color: #5d4949;
+    vertical-align: middle;
+}
+
+.profiles-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.profiles-table tbody tr:hover {
+    background: #fdfbfb;
+}
+
+.actions-col {
+    white-space: nowrap;
+}
+
+/* ---------- Célula de usuário (avatar + nome) ---------- */
+
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    background: #f3e3e6;
+    color: #7b1428;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.user-name {
+    font-size: 15px;
+    color: #3a2a2a;
+    font-weight: 500;
+}
+
+.user-sub {
+    font-size: 13px;
+    color: #a68686;
+}
+
+/* ---------- Badges de cargo ---------- */
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.badge-admin {
+    background: rgba(123, 20, 40, 0.1);
+    color: #7b1428;
+}
+
+.badge-cliente {
+    background: rgba(93, 73, 73, 0.08);
+    color: #5d4949;
+}
+
+/* ---------- Ações da linha ---------- */
+
+.row-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.icon-btn {
+    height: 36px;
+    padding: 0 14px;
+    border-radius: 10px;
+    border: 1px solid #e2d8d8;
+    background: #fff;
+    color: #5d4949;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        border-color 0.15s,
+        background 0.15s;
+}
+
+.icon-btn:hover {
+    border-color: #7b1428;
+    color: #7b1428;
+    background: #fdf9f9;
+}
+
+.icon-btn.danger:hover {
+    border-color: #b3261e;
+    color: #b3261e;
+    background: #fdf2f1;
+}
+
+/* ---------- Estado vazio ---------- */
+
+.empty-state {
+    padding: 40px 20px;
+    text-align: center;
+    color: #a68686;
+    font-size: 15px;
+}
+
+/* ---------- Paginação ---------- */
+
+.pagination-wrapper {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 800px) {
+    .card-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .search-bar button {
+        width: 100%;
+    }
+
+    .row-actions {
+        justify-content: flex-start;
+    }
+}

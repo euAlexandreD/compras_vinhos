@@ -22,48 +22,39 @@
 
             <div class="form-group">
                 <label>Nome</label>
-
                 <input
                     type="text"
                     name="username"
                     value="{{ old('username', $user->username) }}"
-
                 >
             </div>
 
             <div class="form-group">
                 <label>Sobrenome</label>
-
                 <input
                     type="text"
                     name="lastname"
                     value="{{ old('lastname', $user->lastname) }}"
-
                 >
             </div>
 
             <div class="form-group">
                 <label>E-mail</label>
-
                 <input
                     type="email"
                     name="email"
                     value="{{ old('email', $user->email) }}"
-
                 >
             </div>
 
-             <div class="form-group">
+            <div class="form-group">
                 <label>Telefone</label>
-
                 <input
                     type="text"
                     name="phone"
                     value="{{ old('phone', $user->phone) }}"
-
                 >
             </div>
-
 
         </div>
 
@@ -79,78 +70,62 @@
 
             <div class="form-group">
                 <label>Senha</label>
-
                 <input
                     type="password"
                     name="password"
-
                 >
             </div>
-
         </div>
 
     </div>
 
     <div class="form-card">
 
-        <div class="card-title">
-            Permissões
-        </div>
+        <div class="form-buttons">
 
-        <div class="grid-2">
+            <a href="" class="secondary">
+                Cancelar
+            </a>
 
-            <div class="form-group">
-
-                <label>Perfil</label>
-
-                <select name="role">
-
-                    <option value="admin">
-                        Administrador
-                    </option>
-
-                    <option value="user">
-                        Usuário
-                    </option>
-
-                </select>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Status</label>
-
-                <select name="status">
-
-                    <option value="1">
-                        Ativo
-                    </option>
-
-                    <option value="0">
-                        Inativo
-                    </option>
-
-                </select>
-
-            </div>
+            <button class="primary" type="submit">
+                Salvar usuário
+            </button>
 
         </div>
-
-    </div>
-
-    <div class="form-buttons">
-
-        <a href="" class="secondary">
-            Cancelar
-        </a>
-
-        <button class="primary" type="submit">
-            Salvar usuário
-        </button>
 
     </div>
 
 </form>
 
+<form action="{{ route('updateRoles', $user->id) }}" method="POST" class="wine-form">
+    @csrf
+
+    <div class="form-card">
+
+        <div class="card-title">
+            Cargos
+        </div>
+ @can('profiles', \App\Models\User::class)
+        <div class="roles-list">
+            @foreach ($roles as $role)
+                <label class="role-checkbox">
+                    <input
+                        name="roles[]"
+                        type="checkbox"
+                        value="{{ $role->id }}"
+                        @checked($user->roles->pluck('id')->contains($role->id))
+                    >
+                    <span>{{ $role->name }}</span>
+                </label>
+            @endforeach
+        </div>
+@endcan
+        <div class="form-buttons">
+            <button class="primary" type="submit">
+                Salvar Cargo
+            </button>
+        </div>
+
+    </div>
+</form>
 @endsection

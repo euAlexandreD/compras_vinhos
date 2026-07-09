@@ -91,53 +91,7 @@
 
     </div>
 
-    <div class="form-card">
 
-        <div class="card-title">
-            Permissões
-        </div>
-
-        <div class="grid-2">
-
-            <div class="form-group">
-
-                <label>Perfil</label>
-
-                <select name="role">
-
-                    <option value="admin">
-                        Administrador
-                    </option>
-
-                    <option value="user">
-                        Usuário
-                    </option>
-
-                </select>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Status</label>
-
-                <select name="status">
-
-                    <option value="1">
-                        Ativo
-                    </option>
-
-                    <option value="0">
-                        Inativo
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-    </div>
 
     <div class="form-buttons">
 

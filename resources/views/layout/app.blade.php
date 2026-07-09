@@ -22,16 +22,17 @@
 
         <nav class="menu">
             <a href="{{ route('index') }}" class="active">Catalogo</a>
-            <a href="{{ route('orders') }}">Pedidos</a>
-            <a href="{{ route('perfil') }}">Meu perfil</a>
-            <a href="#">Ultimos pedidos</a>
-            <a href="{{ route('cart') }}">Meu carrinho</a>
-        </nav>
 
-        <div class="sidebar-footer">
-            <span>Logado como</span>
-            <strong>{{ session('user.name') ?? 'Usuário' }}</strong>
-        </div>
+            @if (!empty(session('user.name')))
+                <a href="{{ route('orders') }}">Pedidos</a>
+                <a href="{{ route('perfil') }}">Meu perfil</a>
+                <a href="{{ route('myOrders') }}">Ultimos pedidos</a>
+                <a href="{{ route('cart') }}">Meu carrinho</a>
+                @can('listUsers', \App\Models\User::class)
+                    <a href="{{ route('profiles') }}">Ver Perfis</a>
+                @endcan
+            @endif
+        </nav>
     </aside>
 
     <main class="main">

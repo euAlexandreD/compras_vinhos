@@ -4,7 +4,30 @@
 @section('page-title', 'Catálogo de Vinhos')
 @section('page-subtitle', 'Visualize e organize sua seleção de vinhos')
 
+
 @section('content')
+<div class="topbar">
+
+    <div class="topbar-logo">
+        <h2>🍷 Wine Catalog</h2>
+    </div>
+    <div class="topbar-actions">
+        @if(!empty(session('user.name')))
+            <span class="user-name">
+                Olá, {{ session('user.name') }}
+            </span>
+            <a href="{{ route('logout') }}" class="btn-logout">
+                🚪 Sair
+            </a>
+        @else
+            <a href="{{ route('login') }}" class="btn-topbar">
+                Entrar
+            </a>
+        @endif
+
+    </div>
+
+</div>
 
 <section class="catalog-toolbar">
     <div class="filters">
