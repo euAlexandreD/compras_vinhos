@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -44,7 +45,7 @@ class AuthController extends Controller
                 ->with('loginError', 'Credenciais invalidas');
         }
 
-        if ($password != $user->password) {
+        if (!Hash::check($password, $user->password)) {
             return redirect()
                 ->back()
                 ->withInput()

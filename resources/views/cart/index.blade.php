@@ -94,6 +94,16 @@
 
             </div>
 
+            <form action="{{ route('cart.remove') }}" method="POST">
+                @csrf
+
+                <input type="hidden" name="product_id" value="{{ $item['id'] }}">
+
+                <button type="submit" class="remove-btn">
+                    Remover
+                </button>
+            </form>
+
         </div>
 
         @endforeach
@@ -125,16 +135,6 @@
         <a href="{{ route('index') }}" class="continue-shopping">
             Continuar comprando
         </a>
-</div>
-  <form action="{{ route('cart.remove') }}" method="POST">
-    @csrf
-
-    <input type="hidden" name="product_id" value="{{ $item['id'] }}">
-
-    <button type="submit" class="remove-btn">
-        Remover itens do carrinho
-    </button>
-</form>
     </div>
 
 @endif

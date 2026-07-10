@@ -20,7 +20,7 @@
 
             @foreach($statuses as $status)
                 <option value="{{ $status->id }}" @selected(request('status_id') == $status->id)>
-                    {{ $status->name }}
+                    {{ $status->description }}
                 </option>
             @endforeach
         </select>
@@ -42,7 +42,7 @@
                 </div>
 
                 <strong class="status-badge">
-                    {{ $order->status->name ?? 'Sem status' }}
+                    {{ $order->status->description ?? 'Sem status' }}
                 </strong>
             </div>
 

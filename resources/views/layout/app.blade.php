@@ -24,7 +24,10 @@
             <a href="{{ route('index') }}" class="active">Catalogo</a>
 
             @if (!empty(session('user.name')))
+            @can('viewOrders', \App\Models\User::class)
                 <a href="{{ route('orders') }}">Pedidos</a>
+            @endcan
+
                 <a href="{{ route('perfil') }}">Meu perfil</a>
                 <a href="{{ route('myOrders') }}">Ultimos pedidos</a>
                 <a href="{{ route('cart') }}">Meu carrinho</a>

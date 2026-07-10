@@ -10,6 +10,7 @@ use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class MainController extends Controller
 {
@@ -31,6 +32,7 @@ class MainController extends Controller
 
     public function newWine()
     {
+        Gate::authorize('addNewWine', User::class);
         return view('catalog.create');
     }
 
@@ -118,6 +120,8 @@ class MainController extends Controller
 
     public function orders(Request $request)
     {
+        Gate::authorize('viewOrders', User::class);
+
         $orders = Orders::with(['user', 'status', 'items.product'])
             ->when($request->status_id, function ($query, $statusId) {
                 $query->where('status_id', $statusId);
@@ -151,12 +155,15 @@ class MainController extends Controller
 
     public function editProduct($id)
     {
+        Gate::authorize('editWine', User::class);
         $product = Products::findOrFail($id);
         return view('catalog.edit', compact('product'));
     }
 
     public function ordersPdf(Request $request)
     {
+        Gate::authorize('viewOrders', User::class);
+
         $startDate = $request->start_date;
         $endDate = $request->end_date;
 

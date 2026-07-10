@@ -44,16 +44,14 @@
                 @foreach ($users as $user)
                 <tr>
                     <td>
-                                <div class="user-name">{{ $user->username }}</div>
-                                <div class="user-sub">{{ $user->lastname }}</div>
-                            </div>
-                        </div>
+                        <div class="user-name">{{ $user->username }}</div>
+                        <div class="user-sub">{{ $user->lastname }}</div>
                     </td>
                     <td>{{ $user->email }}</td>
                     <td>
                         <div class="badges">
                             @foreach ($user->roles as $role)
-                                <span class="{ {$roles->name === 'Admin' ? 'badge-admin' : 'badge-cliente'}}"> {{ $role->name }}</span>
+                                <span class="{{ $role->name === 'Admin' ? 'badge-admin' : 'badge-cliente' }}">{{ $role->name }}</span>
                             @endforeach
                         </div>
                     </td>

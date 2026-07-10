@@ -105,7 +105,7 @@
         <div class="card-title">
             Cargos
         </div>
- @can('profiles', \App\Models\User::class)
+ @can('manageRoles', \App\Models\User::class)
         <div class="roles-list">
             @foreach ($roles as $role)
                 <label class="role-checkbox">

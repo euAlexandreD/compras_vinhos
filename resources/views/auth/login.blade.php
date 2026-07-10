@@ -26,6 +26,12 @@
                 </div>
             @endif
 
+            @if (session('loginError'))
+                <div class="alert-error">
+                    {{ session('loginError') }}
+                </div>
+            @endif
+
             <form method="POST" action="{{ route('loginSubmit') }}">
                 @csrf
 
@@ -36,7 +42,7 @@
                         id="text"
                         name="username"
                         value="{{ old('username') }}"
-                        placeholder="seu nome...""
+                        placeholder="seu nome..."
                         required
                         autofocus
                     >

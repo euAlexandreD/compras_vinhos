@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Products;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CreateWine extends Controller
 {
     public function newWineSubmit(Request $request)
     {
+        Gate::authorize('addNewWine', User::class);
+
         $id = session('user.id');
         $product = new Products();
         $product->name_wine = $request->name_wine;
@@ -22,7 +26,7 @@ class CreateWine extends Controller
         $product->observation = $request->observation;
         $product->quantity = $request->quantity;
         $product->price = $request->price;
-        $product->code = $request->vocodelume;
+        $product->code = $request->code;
 
         $product->save();
 

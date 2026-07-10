@@ -42,10 +42,11 @@
             <button type="submit">🔍 Pesquisar</button>
         </form>
     </div>
-
+@can('addNewWine', \App\Models\User::class)
     <button onclick="window.location='{{ route('newWine') }}'">
         + Novo vinho
     </button>
+@endcan
 </section>
 
 
@@ -56,48 +57,53 @@
         @foreach ($products as $product)
             <article class="wine-card">
                 <div class="wine-image">
-                    🍷
+                    @if (!empty($product->image))
+                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name_wine }}">
+                    @else
+                        <span class="wine-placeholder">🍷</span>
+                    @endif
+
                     <span class="tag">{{ $product->type }}</span>
+
+                    @can('editWine', \App\Models\User::class)
+                        <a href="{{ route('editProduct', $product->id) }}" class="wine-edit-badge" title="Editar vinho">✎</a>
+                    @endcan
                 </div>
 
                 <div class="wine-info">
                     <h3>{{ $product->name_wine }}</h3>
-                    <p>{{ $product->country }} • Safra {{ $product->harvest }}</p>
+                    <p class="wine-origin">{{ $product->country }} • Safra {{ $product->harvest }}</p>
 
-                    <div class="wine-meta">
-                        <span>Uva</span>
-                        <strong>{{ $product->grape }}</strong>
-                    </div>
-
-                    <div class="wine-meta">
-                        <span>Estoque</span>
-                        <strong>{{ $product->quantity }} un.</strong>
-                    </div>
-
-                     <div class="wine-meta">
-                        <span>Valor</span>
-                        <strong>R$ {{ number_format($product->price, 2, ',', '.') }} un.</strong>
-                    </div>
-
-                   <div class="card-actions-row">
-                        <div class="quantity-control">
-                            <button type="button" onclick="decreaseQty({{ $product->id }})">−</button>
-
-                            <input
-                                type="number"
-                                id="qty-{{ $product->id }}"
-                                name="products[{{ $product->id }}]"
-                                value="0"
-                                readonly
-                            >
-
-                            <button type="button" onclick="increaseQty({{ $product->id }})">+</button>
+                    <div class="wine-stats">
+                        <div class="stat">
+                            <span>Uva</span>
+                            <strong>{{ $product->grape }}</strong>
                         </div>
-
-                        <a href="{{ route('editProduct', $product->id) }}" class="btn-edit">
-                            Editar
-                        </a>
+                        <div class="stat">
+                            <span>Estoque</span>
+                            <strong>{{ $product->quantity }} un.</strong>
+                        </div>
                     </div>
+
+                    <div class="wine-price">
+                        <strong>R$ {{ number_format($product->price, 2, ',', '.') }}</strong>
+                        <span>/un.</span>
+                    </div>
+
+                    <div class="quantity-control">
+                        <button type="button" onclick="decreaseQty({{ $product->id }})">−</button>
+
+                        <input
+                            type="number"
+                            id="qty-{{ $product->id }}"
+                            name="products[{{ $product->id }}]"
+                            value="0"
+                            readonly
+                        >
+
+                        <button type="button" onclick="increaseQty({{ $product->id }})">+</button>
+                    </div>
+                </div>
             </article>
         @endforeach
     </section>

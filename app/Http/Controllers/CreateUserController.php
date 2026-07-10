@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 
 class CreateUserController extends Controller
 {
@@ -20,26 +22,31 @@ class CreateUserController extends Controller
         $user->lastname = $request->lastname;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
         $user->save();
         return redirect()->route('index');
     }
 
     public function editUserSubmit(Request $request)
     {
-        $id = $request->user_id;
-        $user = User::find($id);
+        $user = User::findOrFail($request->user_id);
+        Gate::authorize('updateProfile', $user);
+
         $user->username = $request->username;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->password = $request->password;
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
         $user->save();
         return redirect()->route('index');
     }
 
     public function updateRoles(User $user, Request $request)
     {
+        Gate::authorize('manageRoles', User::class);
+
         $input = $request->validate([
             'roles' => 'required|array'
         ]);
@@ -49,7 +56,7 @@ class CreateUserController extends Controller
 
     public function viewPerfil()
     {
-        if (!session('user_id')) {
+        if (session('user.id')) {
             $user = User::findOrFail(session('user.id'));
             $roles = Role::all();
             return view('users.perfil', compact('user', 'roles'));
@@ -66,6 +73,7 @@ class CreateUserController extends Controller
 
     public function listUsers()
     {
+        Gate::authorize('listUsers', User::class);
         $users = User::all();
         $roles = Role::all();
         return view('users.list_users', compact('users', 'roles'));

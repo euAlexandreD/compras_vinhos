@@ -143,11 +143,11 @@
 
     <div class="form-buttons">
 
-        <button class="secondary" type="submit">
+        <a href="{{ route('index') }}" class="secondary">
             Cancelar
-        </button>
+        </a>
 
-        <button class="primary">
+        <button class="primary" type="submit">
             Salvar vinho
         </button>
 
