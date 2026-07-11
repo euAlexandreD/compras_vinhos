@@ -116,7 +116,10 @@ class MainController extends Controller
             $order->total_price = $total;
             $order->save();
         });
-        return redirect()->route('orders');
+
+        session()->forget('cart');
+
+        return redirect()->route('myOrders')->with('success', 'Pedido realizado com sucesso!');
     }
 
     public function orders(Request $request)

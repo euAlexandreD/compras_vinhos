@@ -50,8 +50,12 @@
 </section>
 
 
+@if(!empty(session('user.name')))
 <form id="cartForm" action="{{ route('addToCart') }}" method="POST">
     @csrf
+@else
+<div>
+@endif
 
     <section class="catalog-grid">
         @foreach ($products as $product)
@@ -95,28 +99,37 @@
                         <span>/un.</span>
                     </div>
 
-                    <div class="quantity-control">
-                        <button type="button" onclick="decreaseQty({{ $product->id }})">−</button>
+                    @if(!empty(session('user.name')))
+                        <div class="quantity-control">
+                            <button type="button" onclick="decreaseQty({{ $product->id }})">−</button>
 
-                        <input
-                            type="number"
-                            id="qty-{{ $product->id }}"
-                            name="products[{{ $product->id }}]"
-                            value="0"
-                            readonly
-                        >
+                            <input
+                                type="number"
+                                id="qty-{{ $product->id }}"
+                                name="products[{{ $product->id }}]"
+                                value="0"
+                                readonly
+                            >
 
-                        <button type="button" onclick="increaseQty({{ $product->id }})">+</button>
-                    </div>
+                            <button type="button" onclick="increaseQty({{ $product->id }})">+</button>
+                        </div>
+                    @else
+                        <a href="{{ route('login') }}" class="login-to-buy">Entrar para comprar</a>
+                    @endif
                 </div>
             </article>
         @endforeach
     </section>
+
+@if(!empty(session('user.name')))
 </form>
 
 <button type="button" class="floating-cart-btn" onclick="document.getElementById('cartForm').submit()">
     Adicionar ao carrinho
 </button>
+@else
+</div>
+@endif
 
 
     {{ $products->links() }}
