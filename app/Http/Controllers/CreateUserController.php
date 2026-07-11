@@ -24,7 +24,7 @@ class CreateUserController extends Controller
         $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
         $user->save();
-        return redirect()->route('index');
+        return redirect()->route('login');
     }
 
     public function editUserSubmit(Request $request)

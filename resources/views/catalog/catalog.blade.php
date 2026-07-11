@@ -57,8 +57,13 @@
         @foreach ($products as $product)
             <article class="wine-card">
                 <div class="wine-image">
-                    @if (!empty($product->image))
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name_wine }}">
+                    @if ($product->primaryImage)
+                        <img
+                            src="{{ asset('storage/' . $product->primaryImage->path) }}"
+                            alt="{{ $product->name_wine }}"
+                            loading="lazy"
+                            decoding="async"
+                        >
                     @else
                         <span class="wine-placeholder">🍷</span>
                     @endif
@@ -114,9 +119,7 @@
 </button>
 
 
-<div class="pagination">
     {{ $products->links() }}
-</div>
 <script>
     function increaseQty(id) {
         const input = document.getElementById('qty-' + id);

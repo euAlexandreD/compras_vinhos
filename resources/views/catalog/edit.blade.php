@@ -8,7 +8,7 @@
 
 @vite('resources/css/create.css')
 
-<form class="wine-form" action="" method="POST" enctype="multipart/form-data">
+<form class="wine-form" action="{{ route('updateProduct', $product->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -22,8 +22,8 @@
         <div class="grid-2">
 
             <div class="form-group">
-                <label>Nome do vinho</label>
-                <input type="text" name="name_wine" value="{{ old('name_wine', $product->name_wine) }}">
+                <label>Nome do vinho *</label>
+                <input type="text" name="name_wine" value="{{ old('name_wine', $product->name_wine) }}" required>
             </div>
 
             <div class="form-group">
@@ -32,8 +32,8 @@
             </div>
 
             <div class="form-group">
-                <label>Vinícola</label>
-                <input type="text" name="winery" value="{{ old('winery', $product->winery) }}">
+                <label>Safra</label>
+                <input type="number" name="harvest" value="{{ old('harvest', $product->harvest) }}">
             </div>
 
             <div class="form-group">
@@ -42,39 +42,26 @@
             </div>
 
             <div class="form-group">
-                <label>Região</label>
-                <input type="text" name="region" value="{{ old('region', $product->region) }}">
-            </div>
-
-            <div class="form-group">
-                <label>Uva</label>
-                <input type="text" name="grape" value="{{ old('grape', $product->grape) }}">
-            </div>
-
-            <div class="form-group">
-                <label>Safra</label>
-                <input type="number" name="harvest" value="{{ old('harvest', $product->harvest) }}">
-            </div>
-
-            <div class="form-group">
                 <label>Volume (ml)</label>
                 <input type="text" name="volume" value="{{ old('volume', $product->volume) }}">
             </div>
 
-            <div class="form-group">
-                <label>Teor Alcoólico (%)</label>
-                <input type="text" name="alcohol_content" value="{{ old('alcohol_content', $product->alcohol_content) }}">
+            <div class="form-group full">
+                <label>Descrição</label>
+                <textarea name="observation" rows="5">{{ old('observation', $product->observation) }}</textarea>
             </div>
 
-            <div class="form-group">
-                <label>Temperatura</label>
-                <input type="text" name="temperature" value="{{ old('temperature', $product->temperature) }}">
-            </div>
+        </div>
 
-            <div class="form-group">
-                <label>Código</label>
-                <input type="text" name="code" value="{{ old('code', $product->code) }}">
-            </div>
+    </div>
+
+    <div class="form-card">
+
+        <div class="card-title">
+            Estoque
+        </div>
+
+        <div class="grid-3">
 
             <div class="form-group">
                 <label>Quantidade</label>
@@ -87,16 +74,41 @@
             </div>
 
             <div class="form-group">
-                <label>Imagem</label>
-                <input type="file" name="image">
+                <label>Código</label>
+                <input type="text" name="code" value="{{ old('code', $product->code) }}">
             </div>
 
         </div>
 
-        <div class="form-group">
-            <label>Observações</label>
-            <textarea name="observation" rows="5">{{ old('observation', $product->observation) }}</textarea>
+    </div>
+
+    <div class="form-card">
+
+        <div class="card-title">
+            Imagens
         </div>
+
+        @if ($product->images->isNotEmpty())
+            <div class="image-gallery">
+                @foreach ($product->images as $image)
+                    <div class="image-thumb">
+                        <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $product->name_wine }}">
+                        <label class="image-remove">
+                            <input type="checkbox" name="remove_images[]" value="{{ $image->id }}">
+                            Remover
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+
+        <label class="upload-box">
+            <input type="file" multiple accept="image/*" hidden name="images[]">
+
+            <div class="upload-icon">📷</div>
+            <h3>Adicionar imagens</h3>
+            <span>Arraste as imagens ou clique aqui</span>
+        </label>
 
     </div>
 

@@ -67,6 +67,13 @@
 
                     <a href="#">Esqueceu a senha?</a>
                 </div>
+                 <div class="form-options">
+                    <label>
+                        Ainda não tem cadastro?
+                    </label>
+
+                    <a href="{{ route('newUser') }}">Cadastre-se aqui</a>
+                </div>
 
                 <button type="submit">Entrar</button>
             </form>

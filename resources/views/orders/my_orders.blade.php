@@ -67,8 +67,6 @@
 
 </section>
 
-<div class="pagination">
     {{ $orders->links() }}
-</div>
 
 @endsection

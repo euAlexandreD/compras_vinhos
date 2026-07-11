@@ -22,6 +22,7 @@ Route::get('/perfil', [CreateUserController::class, 'viewPerfil'])->name('perfil
 Route::post('/cart/remove', [MainController::class, 'removeFromCart'])->name('cart.remove');
 Route::post('/cart/clear', [MainController::class, 'clearCart'])->name('cart.clear');
 Route::get('/editProduct/{id}', [MainController::class, 'editProduct'])->name('editProduct');
+Route::post('/editProduct/{id}', [MainController::class, 'updateProduct'])->name('updateProduct');
 Route::get('/orders/pdf', [MainController::class, 'ordersPdf'])->name('orders.pdf');
 Route::get('/logout', [CreateUserController::class, 'logout'])->name('logout');
 Route::get('/my-orders', [MainController::class, 'myOrders'])->name('myOrders');

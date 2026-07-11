@@ -119,8 +119,6 @@
     </form>
 </div>
 
-<div class="pagination">
     {{ $orders->links() }}
-</div>
 
 @endsection

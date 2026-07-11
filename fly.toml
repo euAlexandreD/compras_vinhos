@@ -1,0 +1,46 @@
+# fly.toml app configuration file generated for compras-vinhos on 2026-07-11T00:37:58-03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'compras-vinhos'
+primary_region = 'gru'
+console_command = 'php /var/www/html/artisan tinker'
+
+[build]
+  [build.args]
+    NODE_VERSION = '22'
+    PHP_VERSION = '8.4'
+
+[env]
+  APP_ENV = 'production'
+  APP_URL = 'https://compras-vinhos.fly.dev'
+  LOG_CHANNEL = 'stderr'
+  LOG_LEVEL = 'info'
+  LOG_STDERR_FORMATTER = 'Monolog\Formatter\JsonFormatter'
+  SESSION_DRIVER = 'cookie'
+  SESSION_SECURE_COOKIE = 'true'
+  DB_CONNECTION = 'pgsql'
+  DB_SSLMODE = 'disable'
+  FILESYSTEM_DISK = 'public'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[deploy]
+  release_command = 'php artisan migrate --force'
+
+[[mounts]]
+  source = 'wine_uploads'
+  destination = '/var/www/html/storage/app/public'
+
+[[vm]]
+  memory = '256mb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 256
