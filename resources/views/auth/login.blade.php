@@ -70,16 +70,7 @@
                     >
                 </div>
 
-                <div class="flex items-center justify-between pt-1 text-sm">
-                    <label class="flex items-center gap-2 text-ink/70">
-                        <input type="checkbox" name="remember" class="h-4 w-4 rounded border-border text-primary focus:ring-primary/30">
-                        Lembrar-me
-                    </label>
-
-                    <a href="#" class="text-primary">Esqueceu a senha?</a>
-                </div>
-
-                <div class="flex items-center justify-between text-sm">
+                <div class="flex items-center justify-between text-sm pt-1">
                     <span class="text-ink/70">Ainda não tem cadastro?</span>
                     <a href="{{ route('newUser') }}" class="font-medium text-primary">Cadastre-se aqui</a>
                 </div>
