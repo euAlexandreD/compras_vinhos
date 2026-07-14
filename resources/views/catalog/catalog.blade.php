@@ -33,6 +33,8 @@
     </div>
 </section>
 
+@php($bottomPad = !empty(session('user.name')) ? 'pb-24 sm:pb-0' : '')
+
 @if(!empty(session('user.name')))
 <form id="cartForm" action="{{ route('addToCart') }}" method="POST">
     @csrf
@@ -40,7 +42,9 @@
 <div>
 @endif
 
-    <section class="grid grid-cols-2 gap-3 pb-24 sm:grid-cols-3 sm:gap-4 sm:pb-0 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+<div class="{{ $bottomPad }}">
+
+    <section class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         @foreach ($products as $product)
             <article class="flex flex-col overflow-hidden rounded-2xl bg-surface shadow-sm ring-1 ring-black/5 transition hover:shadow-md">
                 <div class="relative aspect-[3/4] w-full overflow-hidden bg-gradient-to-b from-primary/90 to-primary-dark">
@@ -137,6 +141,12 @@
         @endforeach
     </section>
 
+    <div class="mt-6">
+        {{ $products->links() }}
+    </div>
+
+</div>
+
 @if(!empty(session('user.name')))
 </form>
 
@@ -152,10 +162,6 @@
 @else
 </div>
 @endif
-
-<div class="mt-6">
-    {{ $products->links() }}
-</div>
 
 <script>
     function increaseQty(id) {
