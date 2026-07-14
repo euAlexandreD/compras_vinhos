@@ -98,7 +98,7 @@
             <strong class="text-xl text-primary">R$ {{ number_format($total, 2, ',', '.') }}</strong>
         </div>
 
-        <form action="{{ route('checkout') }}" method="get">
+        <form action="{{ route('checkout') }}" method="post">
             @csrf
 
             <button class="mb-3 h-12 w-full rounded-xl bg-primary font-medium text-white transition-colors hover:bg-primary-dark">

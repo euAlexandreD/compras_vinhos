@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/editUserSubmit', [CreateUserController::class, 'editUserSubmit'])->name('editUserSubmit');
     Route::get('/cart', [MainController::class, 'cart'])->name('cart');
     Route::post('/addToCart', [MainController::class, 'addToCart'])->name('addToCart');
-    Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
+    Route::post('/checkout', [MainController::class, 'checkout'])->name('checkout');
     Route::get('/orders', [MainController::class, 'orders'])->name('orders');
     Route::get('/perfil', [CreateUserController::class, 'viewPerfil'])->name('perfil');
     Route::post('/cart/remove', [MainController::class, 'removeFromCart'])->name('cart.remove');
