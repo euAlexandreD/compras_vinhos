@@ -26,7 +26,7 @@ class MainController extends Controller
             });
         });
 
-        $products = $products->paginate();
+        $products = $products->paginate(5);
 
         return view('catalog.catalog', compact('products'));
     }
@@ -131,7 +131,7 @@ class MainController extends Controller
                 $query->where('status_id', $statusId);
             })
             ->latest()
-            ->paginate(10);
+            ->paginate(5);
 
         $statuses = Statuses::all();
 
