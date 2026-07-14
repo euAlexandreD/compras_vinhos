@@ -261,6 +261,39 @@ class MainController extends Controller
         return $pdf->download('relatorio_pedidos_por_cliente.pdf');
     }
 
+    public function ordersBottlesPdf(Request $request)
+    {
+        Gate::authorize('viewOrders', User::class);
+
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        $items = OrdemItem::query()
+            ->select('product_id')
+            ->selectRaw('SUM(quantity) as total_quantity')
+            ->selectRaw('SUM(subtotal) as total_value')
+            ->with('product')
+            ->whereHas('order', function ($query) use ($startDate, $endDate) {
+                if ($startDate) {
+                    $query->whereDate('created_at', '>=', $startDate);
+                }
+
+                if ($endDate) {
+                    $query->whereDate('created_at', '<=', $endDate);
+                }
+            })
+            ->groupBy('product_id')
+            ->orderByDesc('total_quantity')
+            ->get();
+
+        $totalBottles = $items->sum('total_quantity');
+        $totalValue = $items->sum('total_value');
+
+        $pdf = Pdf::loadView('orders.report_bottles', compact('items', 'startDate', 'endDate', 'totalBottles', 'totalValue'));
+
+        return $pdf->download('relatorio_garrafas_pedidas.pdf');
+    }
+
     public function myOrders()
     {
         $orders = Orders::with(['items.product', 'status'])

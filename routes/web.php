@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/editProduct/{id}', [MainController::class, 'editProduct'])->name('editProduct');
     Route::post('/editProduct/{id}', [MainController::class, 'updateProduct'])->name('updateProduct');
     Route::get('/orders/pdf', [MainController::class, 'ordersPdf'])->name('orders.pdf');
+    Route::get('/orders/bottles-pdf', [MainController::class, 'ordersBottlesPdf'])->name('orders.bottlesPdf');
     Route::get('/my-orders', [MainController::class, 'myOrders'])->name('myOrders');
     Route::post('/repeat-order/{id}', [MainController::class, 'repeatOrder'])->name('repeatOrder');
     Route::post('/updateRoles/{user}', [CreateUserController::class, 'updateRoles'])->name('updateRoles');

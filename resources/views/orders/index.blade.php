@@ -100,6 +100,8 @@
 </section>
 
 <section class="mt-6 rounded-2xl bg-surface p-4 shadow-sm sm:p-5">
+    <div class="mb-4 text-lg font-medium text-primary">Relatórios</div>
+
     <form method="GET" action="{{ route('orders.pdf') }}" class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
         <div class="flex flex-col gap-1.5">
             <label class="text-sm font-semibold text-ink/70">Data inicial</label>
@@ -121,8 +123,20 @@
             >
         </div>
 
-        <button type="submit" class="h-11 rounded-xl bg-primary px-6 text-sm font-semibold text-white">
-            📄 Gerar PDF
+        <button
+            type="submit"
+            formaction="{{ route('orders.pdf') }}"
+            class="h-11 rounded-xl bg-primary px-6 text-sm font-semibold text-white"
+        >
+            📄 Vendas por cliente
+        </button>
+
+        <button
+            type="submit"
+            formaction="{{ route('orders.bottlesPdf') }}"
+            class="h-11 rounded-xl bg-secondary px-6 text-sm font-semibold text-white"
+        >
+            🍷 Garrafas pedidas
         </button>
 
         <a
