@@ -2,14 +2,12 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>@yield('title', 'Catálogo de Vinhos')</title>
 
-    @vite(['resources/css/auth.css'])
+    @vite(['resources/css/app.css'])
 </head>
-<body>
-    <main>
-        @yield('content')
-    </main>
+<body class="min-h-screen bg-bg font-sans text-ink antialiased">
+    @yield('content')
 </body>
 </html>

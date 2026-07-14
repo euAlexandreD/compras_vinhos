@@ -6,111 +6,102 @@
 @section('page-subtitle', 'Cadastre um novo rótulo para seu catálogo')
 
 @section('content')
-@vite('resources/css/create.css')
 
-<form class="wine-form" action="{{ route('newWineSubmit') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('newWineSubmit') }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-5 sm:max-w-3xl">
     @csrf
 
-    <div class="form-card">
+    <div class="rounded-2xl bg-surface p-5 shadow-sm sm:p-6">
 
-        <div class="card-title">
+        <div class="mb-5 text-lg font-medium text-primary">
             Informações Gerais
         </div>
 
-        <div class="grid-2">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 
-            <div class="form-group">
-                <label>Nome do vinho *</label>
-                <input type="text" name="name_wine" required>
+            <div class="flex flex-col gap-1.5">
+                <label class="text-sm text-ink/70">Nome do vinho *</label>
+                <input type="text" name="name_wine" required class="h-12 rounded-xl border border-border px-4 text-base outline-none focus:border-primary focus:ring-4 focus:ring-primary/10">
             </div>
 
-            <div class="form-group">
-                <label>Tipo</label>
-                <input type="text" name="type">
+            <div class="flex flex-col gap-1.5">
+                <label class="text-sm text-ink/70">Tipo</label>
+                <input type="text" name="type" class="h-12 rounded-xl border border-border px-4 text-base outline-none focus:border-primary focus:ring-4 focus:ring-primary/10">
             </div>
 
-            <div class="form-group">
-                <label>Safra</label>
-                <input type="number" name="harvest">
+            <div class="flex flex-col gap-1.5">
+                <label class="text-sm text-ink/70">Safra</label>
+                <input type="number" name="harvest" class="h-12 rounded-xl border border-border px-4 text-base outline-none focus:border-primary focus:ring-4 focus:ring-primary/10">
             </div>
 
-            <div class="form-group">
-                <label>País</label>
-                <input type="text" name="country">
+            <div class="flex flex-col gap-1.5">
+                <label class="text-sm text-ink/70">País</label>
+                <input type="text" name="country" class="h-12 rounded-xl border border-border px-4 text-base outline-none focus:border-primary focus:ring-4 focus:ring-primary/10">
             </div>
 
-            <div class="form-group">
-                <label>Volume</label>
-                <input type="text" placeholder="750 ml" name="volume">
+            <div class="flex flex-col gap-1.5">
+                <label class="text-sm text-ink/70">Volume</label>
+                <input type="text" placeholder="750 ml" name="volume" class="h-12 rounded-xl border border-border px-4 text-base outline-none focus:border-primary focus:ring-4 focus:ring-primary/10">
             </div>
 
-            <div class="form-group full">
-                <label>Descrição</label>
-                <textarea rows="5" name="observation"></textarea>
+            <div class="flex flex-col gap-1.5 sm:col-span-2">
+                <label class="text-sm text-ink/70">Descrição</label>
+                <textarea rows="5" name="observation" class="rounded-xl border border-border px-4 py-3 text-base outline-none focus:border-primary focus:ring-4 focus:ring-primary/10"></textarea>
             </div>
 
         </div>
 
     </div>
 
-    <div class="form-card">
+    <div class="rounded-2xl bg-surface p-5 shadow-sm sm:p-6">
 
-        <div class="card-title">
+        <div class="mb-5 text-lg font-medium text-primary">
             Estoque
         </div>
 
-        <div class="grid-3">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
 
-            <div class="form-group">
-                <label>Quantidade</label>
-                <input type="number" name="quantity">
+            <div class="flex flex-col gap-1.5">
+                <label class="text-sm text-ink/70">Quantidade</label>
+                <input type="number" name="quantity" class="h-12 rounded-xl border border-border px-4 text-base outline-none focus:border-primary focus:ring-4 focus:ring-primary/10">
             </div>
 
-            <div class="form-group">
-                <label>Valor</label>
-                <input type="number" name="price">
+            <div class="flex flex-col gap-1.5">
+                <label class="text-sm text-ink/70">Valor</label>
+                <input type="number" name="price" class="h-12 rounded-xl border border-border px-4 text-base outline-none focus:border-primary focus:ring-4 focus:ring-primary/10">
             </div>
 
-            <div class="form-group">
-                <label>Código</label>
-                <input type="text" name="code">
+            <div class="flex flex-col gap-1.5">
+                <label class="text-sm text-ink/70">Código</label>
+                <input type="text" name="code" class="h-12 rounded-xl border border-border px-4 text-base outline-none focus:border-primary focus:ring-4 focus:ring-primary/10">
             </div>
 
         </div>
 
     </div>
 
-    <div class="form-card">
+    <div class="rounded-2xl bg-surface p-5 shadow-sm sm:p-6">
 
-        <div class="card-title">
+        <div class="mb-5 text-lg font-medium text-primary">
             Imagens
         </div>
 
-        <label class="upload-box">
-
+        <label class="flex h-40 cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-primary/30 text-center transition-colors hover:border-primary hover:bg-primary-light/40 sm:h-56">
             <input type="file" multiple accept="image/*" hidden name="images[]">
 
-            <div class="upload-icon">
-                📷
-            </div>
-
-            <h3>Enviar imagens</h3>
-
-            <span>
-                Arraste as imagens ou clique aqui
-            </span>
-
+            <div class="mb-3 text-4xl sm:text-5xl">📷</div>
+            <h3 class="font-medium text-ink">Enviar imagens</h3>
+            <span class="mt-1 text-sm text-muted">Arraste as imagens ou clique aqui</span>
         </label>
 
     </div>
 
-    <div class="form-buttons">
+    <div class="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
 
-        <a href="{{ route('index') }}" class="secondary">
+        <a href="{{ route('index') }}" class="flex h-12 items-center justify-center rounded-xl bg-ink/10 px-6 text-sm font-medium text-ink">
             Cancelar
         </a>
 
-        <button class="primary" type="submit">
+        <button class="flex h-12 items-center justify-center rounded-xl bg-primary px-6 text-sm font-medium text-white hover:bg-primary-dark" type="submit">
             Salvar vinho
         </button>
 
